@@ -39,7 +39,7 @@ function randomColor() {
 }
 
 function initScene() {
-  scene.background = new THREE.Color(0xfafafa);
+  scene.background = new THREE.Color('#fafafa');
   const light = new THREE.SpotLight(0xffffff, 0.931);
   light.position.set(0, 0, 1000);
   scene.add(light);

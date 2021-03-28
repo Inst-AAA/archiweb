@@ -49,17 +49,21 @@ public class Server {
 
         socket.on("bts:exampleReceiveGeometry", args -> {
             // receive
-            ArchiJSON archijson = gson.fromJson(args[0].toString(), ArchiJSON.class);
-            archijson.parseGeometryElements(gson);
+            try {
+                ArchiJSON archijson = gson.fromJson(args[0].toString(), ArchiJSON.class);
+                archijson.parseGeometryElements(gson);
 
-            // processing
-            generator.pts = WB_Converter.toWB_Point((Vertices) archijson.getGeometries().get(0));
-            generator.plane = WB_Converter.toWB_Polygon((Plane) archijson.getGeometries().get(1));
-            generator.calcVoronoi(archijson.getProperties().getD());
+                // processing
+                generator.pts = WB_Converter.toWB_Point((Vertices) archijson.getGeometries().get(0));
+                generator.plane = WB_Converter.toWB_Polygon((Plane) archijson.getGeometries().get(1));
+                generator.calcVoronoi(archijson.getProperties().getD());
 
-            // return
-            ArchiJSON ret = generator.toArchiJSON(archijson.getId(), gson);
-            socket.emit("stb:sendGeometry",gson.toJson(ret));
+                // return
+                ArchiJSON ret = generator.toArchiJSON(archijson.getId(), gson);
+                socket.emit("stb:sendGeometry", gson.toJson(ret));
+            } catch (Exception e) {
+                System.out.println(e);
+            }
 
         });
     }

@@ -47,7 +47,7 @@ app.use(router.routes());
 
 const io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:8080",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });

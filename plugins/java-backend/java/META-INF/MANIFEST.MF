@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Main-Class: main.Main
+Class-Path: gluegen-rt-2.3.2-natives-linux-armv6.jar jogl-all-2.3.2-nati
+ ves-android-armv6.jar gluegen-rt-2.3.2-natives-macosx-universal.jar glu
+ egen-rt-2.3.2-natives-solaris-i586.jar jogl-all-2.3.2-natives-linux-i58
+ 6.jar gluegen-rt-2.3.2.jar jogl-all-2.3.2-natives-macosx-universal.jar 
+ gluegen-rt-2.3.2-natives-android-armv6.jar okhttp-3.12.12.jar gluegen-r
+ t-2.3.2-natives-solaris-amd64.jar jogl-all-2.3.2-natives-windows-amd64.
+ jar engine.io-client-2.0.0.jar gluegen-rt-2.3.2-natives-windows-amd64.j
+ ar cam.jar core-3.3.7.jar jogl-all-2.3.2-natives-windows-i586.jar okio-
+ 1.15.0.jar eclipse-collections-9.0.0.jar eclipse-collections-api-9.0.0.
+ jar hemesh-data-3_0_0.jar hemesh-external-6_0_0.jar hemesh-lab.jar heme
+ sh.jar javaluator-3.0.2.jar jogl-all-2.3.2-natives-android-aarch64.jar 
+ gluegen-rt-main-2.3.2.jar jogl-all-2.3.2-natives-solaris-i586.jar glueg
+ en-rt-2.3.2-natives-linux-armv6hf.jar jogl-all-main-2.3.2.jar jogl-all-
+ 2.3.2-natives-linux-armv6.jar socket.io-client-2.0.0.jar gluegen-rt-2.3
+ .2-natives-linux-amd64.jar gluegen-rt-2.3.2-natives-android-aarch64.jar
+  gluegen-rt-2.3.2-natives-linux-i586.jar jogl-all-2.3.2-natives-linux-a
+ rmv6hf.jar json-20090211.jar jogl-all-2.3.2-natives-solaris-amd64.jar j
+ ogl-all-2.3.2.jar gluegen-rt-2.3.2-natives-windows-i586.jar gson-2.8.6.
+ jar jogl-all-2.3.2-natives-linux-amd64.jar
+

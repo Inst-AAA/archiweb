@@ -29,8 +29,8 @@ examples.forEach((item) => {
 })
 
 routes.push(
-  {path: '/', name: 'index', component: Viewer, meta: {title: 'App'}},
-  {path: '/archiweb', name: 'home', component: Home, meta: {title: 'ArchiWeb'}}
+  // {path: '/', name: 'index', component: Viewer, meta: {title: 'App'}},
+  {path: '/', name: 'home', component: Home, meta: {title: 'ArchiWeb'}}
 )
 
 Vue.use(VueRouter)

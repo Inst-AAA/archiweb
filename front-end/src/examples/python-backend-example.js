@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import * as ARCH from "@/archiweb"
 import {io} from 'socket.io-client'
 
-const socket = io("ws://localhost:39481/")
+const socket = io("ws://8.136.121.130:39481/")
 
 let scene, gui;
 let gf, am;

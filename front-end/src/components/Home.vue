@@ -1,5 +1,7 @@
 <template>
-  <section>
+  <section
+    class="mb-16"
+  >
     <v-carousel
       cycle
       height="800"
@@ -15,18 +17,18 @@
 
       </v-carousel-item>
     </v-carousel>
-  
+    
     <v-container>
-      <h1 class="text-center display-2 hidden-xs-only pt-10"> Gallery </h1>
-      <h1 class="text-center display-1 hidden-sm-and-up py-5"> Gallery </h1>
+      <h1 class="text-center display-2 hidden-xs-only pt-10"> Examples </h1>
+      <h1 class="text-center display-1 hidden-sm-and-up py-5"> Examples </h1>
     </v-container>
-    <v-row class="py-10 mb-10 mx-10">
+    <v-row class="py-10 mx-10">
       <v-col
         v-for="(theme,id) in themes"
         :key="id"
         class="elevation-0 col-12 col-md-6 col-lg-4 col-xl-3"
       >
-      
+        
         <v-hover v-slot:default="{ hover }">
           <v-card
             :class="{ 'on-hover': hover }"
@@ -53,7 +55,16 @@
     
       </v-col>
     </v-row>
-
+    
+    
+    <!--    <v-container>
+          <h1 class="text-center display-2 hidden-xs-only pt-10"> Projects </h1>
+          <h1 class="text-center display-1 hidden-sm-and-up py-5"> Projects </h1>
+        </v-container>
+        
+        <v-container class="mb-16">
+          <div class="body-1 mx-10 text-center"> coming soon ..</div>
+        </v-container>-->
   </section>
 </template>
 
