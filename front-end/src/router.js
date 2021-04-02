@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Viewer from './components/Viewer'
 import Home from './components/Home'
+import Map from './components/Map'
 
 const examples = [
   '2d-editor', '3d-editor',
@@ -29,7 +30,8 @@ examples.forEach((item) => {
 })
 
 routes.push(
-  {path: '/', name: 'index', component: Viewer, meta: {title: 'App'}},
+  // {path: '/', name: 'index', component: Viewer, meta: {title: 'App'}},
+  {path: '/', name: 'map', component: Map, meta: {title: 'Map'}},
   {path: '/archiweb', name: 'home', component: Home, meta: {title: 'ArchiWeb'}}
 )
 
