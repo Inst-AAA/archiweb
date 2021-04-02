@@ -9,26 +9,81 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW1vbW9ybmluZyIsImEiOiJjazQxMnNscTkwN2h4M2VwZ
 let control = {
   randomCenter: function () {
     let center = map.getCenter();
-    console.log(center)
-    let dx = Math.random() * 0.01 - 0.005;
-    let dy = Math.random() * 0.01 - 0.005;
+    let dx = Math.random() * 0.02 - 0.01;
+    let dy = Math.random() * 0.02 - 0.01;
     map.flyTo({
       center: [center.lng + dx, center.lat + dy],
       essential: true
     });
     
+  },
+  getAABB: function () {
+    let bbox = [[16.371658895495273, 48.20703295326334], [16.37303218651013, 48.207855212279554]]
+    let range = [];
+    bbox.forEach((p) => {
+      range.push(mousePos(map.project(p)))
+    });
+    let feature = map.queryRenderedFeatures(range, {
+      layers: ['building']
+    });
+    for (let i = 0; i < feature.length; ++i) {
+      highlightBuilding(feature[i], 'h' + i.toString());
+    }
+    
   }
 }
+
+function mousePos(e) {
+  let canvas = map.getCanvasContainer();
+  let rect = canvas.getBoundingClientRect();
+  return new mapboxgl.Point(
+    e.x - rect.left - canvas.clientLeft,
+    e.y - rect.top - canvas.clientTop
+  )
+}
+
 
 function initGUI() {
   gui = new dat.GUI({autoPlace: false});
   
   util = gui.addFolder('Utils');
   util.add(control, 'randomCenter').name('center');
+  util.add(control, 'getAABB').name('getAABB');
   util.open();
   
   const container = document.getElementById('gui-container');
   container.appendChild(gui.domElement);
+}
+
+
+function highlightBuilding(feature, id = '') {
+  if (typeof map.getLayer('building-highlighted' + id) !== "undefined" &&
+    map.getSource('building-highlighted' + id)._data.id !== feature.id) {
+    map.removeLayer('building-highlighted' + id)
+    map.removeSource('building-highlighted' + id);
+    
+  }
+  
+  if (typeof map.getLayer('building-highlighted' + id) === "undefined") {
+    map.addSource('building-highlighted' + id, {
+      "type": "geojson",
+      "data": feature.toJSON()
+    });
+  }
+  
+  if (typeof map.getLayer('building-highlighted' + id) === "undefined") {
+    map.addLayer({
+        'id': 'building-highlighted' + id,
+        'type': 'fill',
+        'source': 'building-highlighted' + id,
+        'paint': {
+          'fill-outline-color': '#401212',
+          'fill-color': '#723d3d',
+          'fill-opacity': 0.6,
+        },
+      }
+    )
+  }
 }
 
 /* ---------- main entry ---------- */
@@ -56,37 +111,18 @@ function main() {
             map.removeSource('building-highlighted')
           }
         } else {
-          if (typeof map.getLayer('building-highlighted') !== "undefined" &&
-            map.getSource('building-highlighted')._data.id !== feature.id) {
-            map.removeLayer('building-highlighted')
-            map.removeSource('building-highlighted');
-            
-          }
-          
-          if (typeof map.getLayer('building-highlighted') === "undefined") {
-            map.addSource('building-highlighted', {
-              "type": "geojson",
-              "data": feature.toJSON()
-            });
-          }
-          
-          if (typeof map.getLayer('building-highlighted') === "undefined") {
-            map.addLayer({
-                'id': 'building-highlighted',
-                'type': 'fill',
-                'source': 'building-highlighted',
-                'paint': {
-                  'fill-outline-color': '#401212',
-                  'fill-color': '#723d3d',
-                  'fill-opacity': 0.6,
-                },
-              }
-            )
-          }
+  
+          highlightBuilding(feature);
+  
         }
-        
+    
       }
     );
+  
+    // map.on('click', function (e) {
+    //   console.log(e.lngLat);
+    //   console.log(map.unproject(e.point));
+    // })
   })
   
 }
