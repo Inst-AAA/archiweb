@@ -4,7 +4,7 @@
       id="gui-container"
       style="position:absolute;right:0;z-index:999"
     ></div>
-    <div id="map" style="bottom:20px"></div>
+    <div id="map" style="bottom:2.1em"></div>
   
   </section>
 
@@ -15,8 +15,13 @@ export default {
   name: "Map",
   data: () => ({}),
   mounted() {
-    const index = require('@/index.js');
-    index.main();
+    if (this.$route.path === '/') {
+      const index = require('@/index.js');
+      index.main();
+    } else {
+      const examples = require('@/examples' + this.$route.path + '.js');
+      examples.main();
+    }
   }
 }
 </script>

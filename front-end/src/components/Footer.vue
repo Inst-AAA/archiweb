@@ -1,7 +1,6 @@
 <template>
   <v-footer
     dark
-    fixed
     padless
     absolute
   >

@@ -9,7 +9,7 @@ const examples = [
   'marching-cubes', 'material-example', 'shape-2d',
   'undo-redo-canvas', 'image-3d', 'java-backend-example',
   'archijson-geometry', 'interactive-spanning-tree',
-  'cascaded-shadow-maps', 'python-backend-example'
+  'cascaded-shadow-maps', 'python-backend-example', 'mapbox-buildings'
 ]
 const routes = [];
 examples.forEach((item) => {
@@ -18,10 +18,11 @@ examples.forEach((item) => {
     res[i] = res[i].replace(/^\S/, s => s.toUpperCase());
   }
   let title = res.join(' ');
+  let compo = (item.indexOf('mapbox') !== -1) ? Map : Viewer;
   routes.push({
     path: '/' + item,
     name: item,
-    component: Viewer,
+    component: compo,
     props: () => {
       window.currentApp = item
     },

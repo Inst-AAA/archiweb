@@ -3,8 +3,7 @@
 import * as ARCH from "@/archiweb"
 
 let scene, renderer, gui, camera;
-let geoFty, matFty;
-let astMgr;
+let gf, mt, am;
 
 /* ---------- GUI setup ---------- */
 function initGUI() {
@@ -14,11 +13,11 @@ function initGUI() {
 
 /* ---------- create your scene object ---------- */
 function initScene() {
-  geoFty = new ARCH.GeometryFactory(scene);
-  matFty = new ARCH.MaterialFactory();
+  gf = new ARCH.GeometryFactory(scene);
+  mt = new ARCH.MaterialFactory();
   
   // refresh global objects
-  ARCH.refreshSelection();
+  am.refreshSelection();
 }
 
 
@@ -36,7 +35,7 @@ function main() {
   gui = viewport.gui;
   camera = viewport.camera;
   
-  astMgr = viewport.enableAssetManager();
+  am = viewport.enableAssetManager();
   viewport.enableDragFrames();
   viewport.enableTransformer();
   viewport.enableSceneBasic();
